@@ -1,0 +1,404 @@
+:root {
+    --primary-color: #2563eb;
+    --text-color: #1f2937;
+    --bg-color: #f3f4f6;
+    --border-color: #e5e7eb;
+    --white: #ffffff;
+    --font-main: 'Inter', sans-serif;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --bg-color: #111827;
+    --text-color: #f3f4f6;
+    --white: #1f2937;
+    --border-color: #374151;
+}
+
+/* Resume Preview always stays light for readability/print accuracy */
+body.dark-mode .resume-preview {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+body.dark-mode .resume-preview h1,
+body.dark-mode .resume-preview h3,
+body.dark-mode .preview-item-title,
+body.dark-mode .resume-job-title,
+body.dark-mode .preview-item-subtitle,
+body.dark-mode .resume-contact-info,
+body.dark-mode .resume-section p,
+body.dark-mode .preview-item-date {
+    color: initial;
+    /* Reset to default blacks/greys defined in their specific classes or inherit from white container */
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* App-like feel */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Header */
+.app-header {
+    background-color: var(--white);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.header-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.app-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Editor Panel */
+.editor {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--spacing-lg);
+    border-right: 1px solid var(--border-color);
+    background-color: var(--white);
+    max-width: 500px;
+    /* or 40% */
+}
+
+.editor-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.editor-section h2 {
+    margin-bottom: var(--spacing-md);
+    font-size: 1.25rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px dashed var(--primary-color);
+    padding: 0.5rem 1rem;
+    width: 100%;
+    /* For editor buttons */
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(37, 99, 235, 0.1);
+}
+
+/* Header Specific Controls */
+.header-controls .btn-secondary {
+    width: auto;
+    /* Reset width for header */
+}
+
+#theme-toggle {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    border: none;
+    font-weight: 600;
+    box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.4);
+}
+
+#theme-toggle:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 8px -1px rgba(99, 102, 241, 0.5);
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+}
+
+#clear-all {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    border: none;
+    font-weight: 600;
+    box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.4);
+}
+
+#clear-all:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 8px -1px rgba(239, 68, 68, 0.5);
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+/* Preview Panel */
+.preview-container {
+    flex: 1;
+    background-color: #525659;
+    /* Standard PDF viewer bg color */
+    padding: var(--spacing-lg);
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* Ensure items start from top and don't stretch weirdly */
+}
+
+.resume-preview {
+    background-color: var(--white);
+    width: 210mm;
+    /* A4 width */
+    min-height: 297mm;
+    /* A4 height */
+    height: auto;
+    /* Ensure it grows */
+    padding: 2.5cm;
+    /* Standard print margin */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* For print simulation */
+    margin-bottom: 2rem;
+    /* Space at bottom when scrolling */
+}
+
+/* Form Row */
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    resize: vertical;
+}
+
+/* Resume Preview Styling */
+.resume-header {
+    text-align: center;
+    border-bottom: 2px solid var(--text-color);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.resume-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #111827;
+}
+
+.resume-job-title {
+    font-size: 1.25rem;
+    color: #4b5563;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.resume-contact-info {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.resume-section {
+    margin-bottom: 2rem;
+}
+
+.resume-section h3 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.resume-section p {
+    line-height: 1.6;
+    color: #374151;
+    word-wrap: break-word;
+    /* Legacy support */
+    overflow-wrap: break-word;
+    /* Standard property */
+    word-break: break-word;
+    /* Ensure long words break */
+}
+
+#preview-summary {
+    text-indent: 2rem;
+    /* Indent the first line of the summary */
+}
+
+.preview-item {
+    margin-bottom: 1.25rem;
+}
+
+.preview-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.25rem;
+}
+
+.preview-item-title {
+    font-weight: 700;
+    color: #111827;
+}
+
+.preview-item-subtitle {
+    font-weight: 500;
+    color: #4b5563;
+}
+
+.preview-item-date {
+    font-size: 0.9rem;
+    color: #6b7280;
+    font-style: italic;
+}
+
+/* Dynamic form items styling */
+.experience-item,
+.education-item {
+    background: #f9fafb;
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.remove-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.remove-btn:hover {
+    text-decoration: underline;
+}
+
+/* Printing */
+@media print {
+    @page {
+        margin: 0;
+        /* Removing browser default margins hides header/footer */
+    }
+
+    body {
+        height: auto;
+        overflow: visible;
+        background: white;
+    }
+
+    .app-header,
+    .editor {
+        display: none;
+    }
+
+    .app-container {
+        display: block;
+        height: auto;
+        overflow: visible;
+    }
+
+    .preview-container {
+        padding: 0;
+        background: white;
+        display: block;
+        height: auto;
+        overflow: visible;
+        align-items: flex-start;
+    }
+
+    .resume-preview {
+        width: 100%;
+        min-height: auto;
+        height: auto;
+        box-shadow: none;
+        margin: 0;
+        padding: 2cm;
+        /* Add padding back since page margin is 0 */
+        border: none;
+    }
+
+    /* Allow lists to break but try to keep items intact */
+    ul {
+        break-inside: auto;
+    }
+}
+
+/* Lists */
+.bullet-list {
+    padding-left: 2rem;
+    /* Indentation for bullet points */
+    list-style-type: disc;
+    columns: 2;
+    /* Split into two columns */
+    column-gap: 2rem;
+    /* Gap between columns */
+}
+
+.bullet-list li {
+    margin-bottom: 0.25rem;
+    break-inside: avoid;
+    /* Prevent split across columns */
+}

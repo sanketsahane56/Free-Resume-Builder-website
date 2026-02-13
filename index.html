@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="app-header">
+        <h1>Resume Builder</h1>
+        <div class="header-controls">
+            <button id="theme-toggle" class="btn-secondary">🌙 Dark Mode</button>
+            <button id="clear-all" class="btn-secondary">Clear
+                All</button>
+            <button id="download-pdf" class="btn-primary">Download PDF</button>
+        </div>
+    </header>
+
+    <main class="app-container">
+        <!-- Left Side: Editor -->
+        <section class="editor" id="editor-panel">
+            <div class="editor-section">
+                <h2>Personal Information</h2>
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" placeholder="e.g. John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="jobTitle">Job Title</label>
+                    <input type="text" id="jobTitle" placeholder="e.g. Software Engineer">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" placeholder="+1 234 567 890">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" placeholder="City, Country">
+                    </div>
+                    <div class="form-group">
+                        <label for="website">Website/Link</label>
+                        <input type="url" id="website" placeholder="linkedin.com/in/johndoe">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="summary">Professional Summary</label>
+                    <textarea id="summary" rows="4" placeholder="Brief summary of your career..."></textarea>
+                </div>
+            </div>
+
+            <div class="editor-section">
+                <h2>Experience</h2>
+                <div id="experience-list"></div>
+                <button class="btn-secondary" id="add-experience">+ Add Experience</button>
+            </div>
+
+            <div class="editor-section">
+                <h2>Education</h2>
+                <div id="education-list"></div>
+                <button class="btn-secondary" id="add-education">+ Add Education</button>
+            </div>
+
+            <div class="editor-section">
+                <h2>Skills</h2>
+                <div class="form-group">
+                    <label for="skills">Skills (comma separated)</label>
+                    <textarea id="skills" rows="3" placeholder="HTML, CSS, JavaScript, React..."></textarea>
+                </div>
+            </div>
+
+            <div class="editor-section">
+                <h2>Projects</h2>
+                <div id="projects-list"></div>
+                <button class="btn-secondary" id="add-project">+ Add Project</button>
+            </div>
+
+            <div class="editor-section">
+                <h2>Certifications</h2>
+                <div id="certifications-list"></div>
+                <button class="btn-secondary" id="add-certification">+ Add Certification</button>
+            </div>
+
+            <div class="editor-section">
+                <h2>Achievements</h2>
+                <div id="achievements-list"></div>
+                <button class="btn-secondary" id="add-achievement">+ Add Achievement</button>
+            </div>
+
+            </div>
+        </section>
+
+        <!-- Right Side: Preview -->
+        <section class="preview-container">
+            <div class="resume-preview" id="resume-preview">
+                <div class="resume-header">
+                    <h1 id="preview-name">Your Name</h1>
+                    <p id="preview-title" class="resume-job-title">Job Title</p>
+                    <div class="resume-contact-info">
+                        <span id="preview-email">email@example.com</span> |
+                        <span id="preview-phone">123-456-7890</span> |
+                        <span id="preview-location">Location</span> |
+                        <span id="preview-website">website.com</span>
+                    </div>
+                </div>
+
+                <div class="resume-section" id="preview-summary-section">
+                    <h3>Summary</h3>
+                    <p id="preview-summary">Professional summary goes here...</p>
+                </div>
+
+                <div class="resume-section">
+                    <h3>Experience</h3>
+                    <div id="preview-experience-list">
+                        <!-- Experience items render here -->
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>Education</h3>
+                    <div id="preview-education-list">
+                        <!-- Education items render here -->
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>Skills</h3>
+                    <ul id="preview-skills" class="bullet-list">
+                        <li>List of skills...</li>
+                    </ul>
+                </div>
+
+                <div class="resume-section" id="preview-projects-section" style="display: none;">
+                    <h3>Projects</h3>
+                    <div id="preview-projects-list">
+                        <!-- Projects items render here -->
+                    </div>
+                </div>
+
+                <div class="resume-section" id="preview-certifications-section" style="display: none;">
+                    <h3>Certifications</h3>
+                    <div id="preview-certifications-list">
+                        <!-- Certification items render here -->
+                    </div>
+                </div>
+
+                <div class="resume-section" id="preview-achievements-section" style="display: none;">
+                    <h3>Achievements</h3>
+                    <ul id="preview-achievements-list" class="bullet-list">
+                        <!-- Achievements render here -->
+                    </ul>
+                </div>
+
+            </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
